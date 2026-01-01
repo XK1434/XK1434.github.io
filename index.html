@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     
     <style>
-        /* CSS VARIABLEN */
         :root {
             --primary: #2ecc71;
             --primary-dark: #27ae60;
@@ -18,12 +17,10 @@
             --calendly-blue: #006bff;
         }
 
-        /* RESET & BASIS STYLES */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body { font-family: 'Inter', sans-serif; line-height: 1.6; color: var(--dark); }
 
-        /* NAVIGATION */
         nav { 
             display: flex; 
             justify-content: space-between; 
@@ -48,13 +45,13 @@
             border-radius: 20px; 
         }
 
-        /* HERO SEKTION */
         .hero { 
             display: flex; 
             align-items: center; 
             padding: 60px 10%; 
             background: linear-gradient(135deg, #f1f8f4 0%, #ffffff 100%); 
             gap: 40px; 
+            min-height: 80vh;
         }
         .hero-content { flex: 1; }
         .hero-content h1 { font-size: 3rem; margin-bottom: 20px; }
@@ -68,6 +65,8 @@
             border-radius: 30px; 
             text-decoration: none; 
             font-weight: 600; 
+            cursor: pointer;
+            border: none;
         }
         .btn-secondary { 
             color: var(--dark); 
@@ -75,53 +74,79 @@
             font-weight: 600; 
             border-bottom: 2px solid var(--primary); 
             padding: 10px 0; 
+            cursor: pointer;
+            background: none;
+            border-top: none; border-left: none; border-right: none;
+            font-family: inherit;
+            font-size: 1rem;
         }
 
-        /* MOCKUP STYLES */
+        /* HANDY MOCKUP MIT VIDEO-FUNKTION */
         .mockup { 
-            width: 260px; 
-            height: 520px; 
+            width: 280px; 
+            height: 560px; 
             background: #333; 
-            border-radius: 40px; 
-            padding: 10px; 
+            border-radius: 45px; 
+            padding: 12px; 
             border: 4px solid #444; 
             margin: 0 auto; 
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1); 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2); 
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
         }
+        .mockup:hover { transform: scale(1.02); }
+
         .mockup-screen { 
             background: white; 
             width: 100%; 
             height: 100%; 
-            border-radius: 30px; 
+            border-radius: 35px; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
-            padding: 25px; 
             overflow: hidden; 
+            position: relative;
         }
-        .app-logo-inside { width: 100%; height: auto; object-fit: contain; }
 
-        /* VIDEO & CALENDLY */
-        .video-section, .booking-section { padding: 60px 10%; text-align: center; }
-        .video-embed-container { 
-            position: relative; 
-            padding-bottom: 56.25%; 
-            height: 0; 
-            max-width: 800px; 
-            margin: 0 auto; 
-            border-radius: 15px; 
-            overflow: hidden; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+        .app-logo-inside { 
+            width: 80%; 
+            height: auto; 
+            object-fit: contain; 
+            transition: opacity 0.5s ease;
         }
-        .video-embed-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-        .booking-section { background: #f4f7f6; }
+        /* Video Iframe im Handy (anfangs versteckt) */
+        #video-frame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            border: none;
+        }
+
+        .play-hint {
+            position: absolute;
+            bottom: 20px;
+            background: rgba(46, 204, 113, 0.9);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            pointer-events: none;
+        }
+
+        .booking-section { padding: 80px 10%; background: #f4f7f6; text-align: center; }
         .booking-container { 
             background: white; 
             padding: 40px; 
             border-radius: 20px; 
             max-width: 600px; 
             margin: 0 auto; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
         }
         .btn-calendly { 
             background: var(--calendly-blue); 
@@ -133,9 +158,7 @@
             display: inline-block; 
             margin: 20px 0; 
         }
-        .small-text { font-size: 0.8rem; color: #999; }
 
-        /* FEATURES & ORGANISATION */
         .features { padding: 80px 10%; text-align: center; }
         .feature-grid { 
             display: grid; 
@@ -146,7 +169,7 @@
         .feature-card { background: var(--light); padding: 30px; border-radius: 15px; }
         .icon { font-size: 2.5rem; margin-bottom: 15px; }
 
-        .org-section { background: var(--dark); color: white; padding: 60px 10%; text-align: center; }
+        .org-section { background: var(--dark); color: white; padding: 80px 10%; text-align: center; }
         .org-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
@@ -161,9 +184,7 @@
             text-align: left; 
         }
 
-        /* FOOTER & QR CODE */
         footer { padding: 80px 10% 40px; text-align: center; background: #f1f1f1; }
-        .qr-container { margin-bottom: 40px; }
         .qr-placeholder { 
             background: white; 
             padding: 15px; 
@@ -172,9 +193,7 @@
             border-radius: 15px; 
             box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
         }
-        .copyright { font-size: 0.8rem; color: #888; }
 
-        /* RESPONSIVE DESIGN */
         @media (max-width: 768px) {
             .hero { flex-direction: column; text-align: center; }
             nav ul { display: none; }
@@ -187,7 +206,6 @@
         <nav>
             <div class="logo">Eco<span>Camp</span></div>
             <ul>
-                <li><a href="#video-pitch">Vorstellungsvideo</a></li>
                 <li><a href="#features">Features</a></li>
                 <li><a href="#booking">Termin buchen</a></li>
                 <li><a href="#organisation">Organisation</a></li>
@@ -202,23 +220,18 @@
             <p>Werde Teil der EcoCamp-Community an der HTW Saar. Entsorge deinen Abfall richtig und erhalte Belohnungen für die Mensa und Bibliothek.</p>
             <div class="cta-group">
                 <a href="#download-area" class="btn-primary">Jetzt Downloaden</a>
-                <a href="#video-pitch" class="btn-secondary">Vorstellungsvideo</a>
+                <button onclick="playVideo()" class="btn-secondary">▶ Video im Handy abspielen</button>
             </div>
         </div>
         
         <div class="hero-image">
-            <div class="mockup">
+            <div class="mockup" id="phone-mockup" onclick="playVideo()">
                 <div class="mockup-screen">
-                    <img src="logo.png" alt="EcoCamp App Logo" class="app-logo-inside">
+                    <img src="logo.png" alt="EcoCamp App Logo" class="app-logo-inside" id="app-logo">
+                    <iframe id="video-frame" src="https://www.youtube.com/embed/UiSZyLrmGpY?enablejsapi=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    <div class="play-hint" id="hint">Klick zum Abspielen</div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section id="video-pitch" class="video-section">
-        <h2>Unser Vorstellungsvideo</h2>
-        <div class="video-embed-container">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/UiSZyLrmGpY" title="EcoCamp MVP Pitch" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
     </section>
 
@@ -227,7 +240,6 @@
             <h2>Haben Sie Fragen?</h2>
             <p>Buchen Sie direkt einen Termin für eine Live-Demo oder ein Gespräch mit unserem Team.</p>
             <a href="https://calendly.com/saka00011-htw-saarland/ecocamp" target="_blank" class="btn-calendly">📅 Buchen Sie einen Termin</a>
-            <p class="small-text">Sollte der Button nicht funktionieren, nutzen Sie unseren direkten Calendly-Link.</p>
         </div>
     </section>
 
@@ -273,13 +285,33 @@
     <footer id="download-area">
         <div class="qr-container">
             <h3>App Download</h3>
-            <p>Scannen Sie den Code, um EcoCamp zu installieren.</p>
             <div class="qr-placeholder">
                 <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=EcoCampHTW" alt="QR Code">
             </div>
         </div>
         <p class="copyright">&copy; 2026 EcoCamp Projekt - HTW Saar</p>
     </footer>
+
+    <script>
+        function playVideo() {
+            const logo = document.getElementById('app-logo');
+            const video = document.getElementById('video-frame');
+            const hint = document.getElementById('hint');
+            const mockup = document.getElementById('phone-mockup');
+
+            // Logo und Hinweis ausblenden
+            logo.style.opacity = '0';
+            hint.style.display = 'none';
+            
+            // Video anzeigen und Autoplay triggern
+            video.style.display = 'block';
+            video.src += "&autoplay=1";
+            
+            // Klick-Event auf dem Handy entfernen, damit man im Video navigieren kann
+            mockup.onclick = null;
+            mockup.style.cursor = "default";
+        }
+    </script>
 
 </body>
 </html>
