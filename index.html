@@ -1,1 +1,285 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoCamp | Dein Campus, Deine Belohnung</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS VARIABLEN */
+        :root {
+            --primary: #2ecc71;
+            --primary-dark: #27ae60;
+            --dark: #2c3e50;
+            --light: #f8f9fa;
+            --white: #ffffff;
+            --calendly-blue: #006bff;
+        }
 
+        /* RESET & BASIS STYLES */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: var(--dark); }
+
+        /* NAVIGATION */
+        nav { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 15px 10%; 
+            background: white; 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
+        }
+        .logo { font-size: 1.6rem; font-weight: 800; }
+        .logo span { color: var(--primary); }
+        nav ul { display: flex; list-style: none; align-items: center; }
+        nav ul li { margin-left: 20px; }
+        nav ul li a { text-decoration: none; color: var(--dark); font-weight: 600; font-size: 0.9rem; }
+
+        .btn-primary-small { 
+            background: var(--primary); 
+            color: white !important; 
+            padding: 8px 15px; 
+            border-radius: 20px; 
+        }
+
+        /* HERO SEKTION */
+        .hero { 
+            display: flex; 
+            align-items: center; 
+            padding: 60px 10%; 
+            background: linear-gradient(135deg, #f1f8f4 0%, #ffffff 100%); 
+            gap: 40px; 
+        }
+        .hero-content { flex: 1; }
+        .hero-content h1 { font-size: 3rem; margin-bottom: 20px; }
+        .highlight { color: var(--primary); }
+
+        .cta-group { display: flex; gap: 15px; margin-top: 20px; }
+        .btn-primary { 
+            background: var(--primary); 
+            color: white; 
+            padding: 15px 30px; 
+            border-radius: 30px; 
+            text-decoration: none; 
+            font-weight: 600; 
+        }
+        .btn-secondary { 
+            color: var(--dark); 
+            text-decoration: none; 
+            font-weight: 600; 
+            border-bottom: 2px solid var(--primary); 
+            padding: 10px 0; 
+        }
+
+        /* MOCKUP STYLES */
+        .mockup { 
+            width: 260px; 
+            height: 520px; 
+            background: #333; 
+            border-radius: 40px; 
+            padding: 10px; 
+            border: 4px solid #444; 
+            margin: 0 auto; 
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1); 
+        }
+        .mockup-screen { 
+            background: white; 
+            width: 100%; 
+            height: 100%; 
+            border-radius: 30px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 25px; 
+            overflow: hidden; 
+        }
+        .app-logo-inside { width: 100%; height: auto; object-fit: contain; }
+
+        /* VIDEO & CALENDLY */
+        .video-section, .booking-section { padding: 60px 10%; text-align: center; }
+        .video-embed-container { 
+            position: relative; 
+            padding-bottom: 56.25%; 
+            height: 0; 
+            max-width: 800px; 
+            margin: 0 auto; 
+            border-radius: 15px; 
+            overflow: hidden; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+        }
+        .video-embed-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+        .booking-section { background: #f4f7f6; }
+        .booking-container { 
+            background: white; 
+            padding: 40px; 
+            border-radius: 20px; 
+            max-width: 600px; 
+            margin: 0 auto; 
+        }
+        .btn-calendly { 
+            background: var(--calendly-blue); 
+            color: white; 
+            padding: 15px 25px; 
+            border-radius: 10px; 
+            text-decoration: none; 
+            font-weight: 700; 
+            display: inline-block; 
+            margin: 20px 0; 
+        }
+        .small-text { font-size: 0.8rem; color: #999; }
+
+        /* FEATURES & ORGANISATION */
+        .features { padding: 80px 10%; text-align: center; }
+        .feature-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 25px; 
+            margin-top: 40px; 
+        }
+        .feature-card { background: var(--light); padding: 30px; border-radius: 15px; }
+        .icon { font-size: 2.5rem; margin-bottom: 15px; }
+
+        .org-section { background: var(--dark); color: white; padding: 60px 10%; text-align: center; }
+        .org-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 20px; 
+            margin-top: 30px; 
+        }
+        .org-item { 
+            background: rgba(255,255,255,0.05); 
+            padding: 20px; 
+            border-radius: 10px; 
+            border-left: 4px solid var(--primary); 
+            text-align: left; 
+        }
+
+        /* FOOTER & QR CODE */
+        footer { padding: 80px 10% 40px; text-align: center; background: #f1f1f1; }
+        .qr-container { margin-bottom: 40px; }
+        .qr-placeholder { 
+            background: white; 
+            padding: 15px; 
+            width: 180px; 
+            margin: 20px auto; 
+            border-radius: 15px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+        }
+        .copyright { font-size: 0.8rem; color: #888; }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .hero { flex-direction: column; text-align: center; }
+            nav ul { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">Eco<span>Camp</span></div>
+            <ul>
+                <li><a href="#video-pitch">Vorstellungsvideo</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#booking">Termin buchen</a></li>
+                <li><a href="#organisation">Organisation</a></li>
+                <li><a href="#download-area" class="btn-primary-small">Download</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Müll trennen. <br><span class="highlight">Prämien kassieren.</span></h1>
+            <p>Werde Teil der EcoCamp-Community an der HTW Saar. Entsorge deinen Abfall richtig und erhalte Belohnungen für die Mensa und Bibliothek.</p>
+            <div class="cta-group">
+                <a href="#download-area" class="btn-primary">Jetzt Downloaden</a>
+                <a href="#video-pitch" class="btn-secondary">Vorstellungsvideo</a>
+            </div>
+        </div>
+        
+        <div class="hero-image">
+            <div class="mockup">
+                <div class="mockup-screen">
+                    <img src="logo.png" alt="EcoCamp App Logo" class="app-logo-inside">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="video-pitch" class="video-section">
+        <h2>Unser Vorstellungsvideo</h2>
+        <div class="video-embed-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/UiSZyLrmGpY" title="EcoCamp MVP Pitch" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <section id="booking" class="booking-section">
+        <div class="booking-container">
+            <h2>Haben Sie Fragen?</h2>
+            <p>Buchen Sie direkt einen Termin für eine Live-Demo oder ein Gespräch mit unserem Team.</p>
+            <a href="https://calendly.com/saka00011-htw-saarland/ecocamp" target="_blank" class="btn-calendly">📅 Buchen Sie einen Termin</a>
+            <p class="small-text">Sollte der Button nicht funktionieren, nutzen Sie unseren direkten Calendly-Link.</p>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <h2>So einfach funktioniert EcoCamp</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="icon">♻️</div>
+                <h3>Richtig trennen</h3>
+                <p>Nutze die App am Campus der HTW Saar.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">📈</div>
+                <h3>Punkte sammeln</h3>
+                <p>Jede richtige Trennung bringt dir Punkte.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🎁</div>
+                <h3>Prämien einlösen</h3>
+                <p>Tausche Punkte gegen Gutscheine.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="organisation" class="org-section">
+        <h2>Projekt-Organisation</h2>
+        <div class="org-grid">
+            <div class="org-item">
+                <h4>Effektive Meetings</h4>
+                <p>Wöchentliche Abstimmungstermine.</p>
+            </div>
+            <div class="org-item">
+                <h4>Klare Rollen</h4>
+                <p>Zuständigkeiten für Design und Technik.</p>
+            </div>
+            <div class="org-item">
+                <h4>Transparenz</h4>
+                <p>Zentrale Dokumentation aller Schritte.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="download-area">
+        <div class="qr-container">
+            <h3>App Download</h3>
+            <p>Scannen Sie den Code, um EcoCamp zu installieren.</p>
+            <div class="qr-placeholder">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=EcoCampHTW" alt="QR Code">
+            </div>
+        </div>
+        <p class="copyright">&copy; 2026 EcoCamp Projekt - HTW Saar</p>
+    </footer>
+
+</body>
+</html>
